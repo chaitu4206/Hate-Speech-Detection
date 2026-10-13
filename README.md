@@ -2,6 +2,9 @@
 
 A Natural Language Processing (NLP) project that uses a fine-tuned BERT model to classify social media text into three categories: **hate speech, offensive language, and neither**.
 
+**Author:** Chaitanya
+**GitHub:** [@chaitu4206](https://github.com/chaitu4206)
+
 The project includes dataset loading, text preprocessing, BERT model training, evaluation, confusion matrix generation, and interactive predictions.
 
 ## Project Overview
@@ -16,7 +19,7 @@ The model performs three-class text classification:
 | 1 | Offensive Language | Text classified as offensive language |
 | 2 | Neither | Text that belongs to neither of the other categories |
 
-These labels follow the class mapping used by the dataset and the project code.
+These labels follow the class mapping used by the dataset and project code.
 
 ## Features
 
@@ -49,27 +52,27 @@ These labels follow the class mapping used by the dataset and the project code.
 
 ```text
 Hate-Speech-Detection/
-|-- data/
-|   `-- hate_speech/
-|       `-- labeled_data.csv
-|-- models/
-|   `-- hate_speech_bert/
-|       |-- config.json
-|       |-- model.safetensors
-|       |-- tokenizer.json
-|       `-- tokenizer_config.json
-|-- results/
-|   `-- hate_speech/
-|       |-- classification_report.txt
-|       `-- confusion_matrix.png
-|-- dataset.py
-|-- preprocessing.py
-|-- train.py
-|-- evaluate.py
-|-- inference.py
-|-- requirements.txt
-|-- .gitignore
-`-- .gitattributes
+├── data/
+│   └── hate_speech/
+│       └── labeled_data.csv
+├── models/
+│   └── hate_speech_bert/
+│       ├── config.json
+│       ├── model.safetensors
+│       ├── tokenizer.json
+│       └── tokenizer_config.json
+├── results/
+│   └── hate_speech/
+│       ├── classification_report.txt
+│       └── confusion_matrix.png
+├── dataset.py
+├── preprocessing.py
+├── train.py
+├── evaluate.py
+├── inference.py
+├── requirements.txt
+├── .gitignore
+└── .gitattributes
 ```
 
 **Note:** The dataset is kept out of Git, while the saved model and selected evaluation artifacts are included in the repository. Model weights are stored using Git LFS.
@@ -80,7 +83,6 @@ This project uses the **Hate Speech and Offensive Language** dataset associated 
 
 - Dataset repository: [Davidson Hate Speech and Offensive Language](https://github.com/t-davidson/hate-speech-and-offensive-language)
 - Dataset file: `labeled_data.csv`
-- Dataset download URL: `https://raw.githubusercontent.com/t-davidson/hate-speech-and-offensive-language/master/data/labeled_data.csv`
 
 The dataset contains tweets labeled as hate speech, offensive language, or neither.
 
@@ -103,7 +105,7 @@ Internet access is required when the dataset is not already available locally.
 ### 1. Clone the repository
 
 ```powershell
-git clone https://github.com/v78135236-dev/Hate-Speech-Detection.git
+git clone https://github.com/chaitu4206/Hate-Speech-Detection.git
 cd Hate-Speech-Detection
 ```
 
@@ -111,11 +113,6 @@ cd Hate-Speech-Detection
 
 ```powershell
 python -m venv .venv
-```
-
-Activate it in PowerShell:
-
-```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
@@ -126,11 +123,6 @@ If PowerShell blocks environment activation, use the appropriate activation meth
 ```powershell
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
-```
-
-Check installed package compatibility:
-
-```powershell
 python -m pip check
 ```
 
@@ -167,8 +159,6 @@ The dataset loader in `dataset.py` provides functions for downloading, loading, 
 
 The training and evaluation scripts use a sample of up to 10,000 records.
 
-The configured split is:
-
 | Subset | Percentage | Samples when 10,000 are available |
 |---|---:|---:|
 | Training | 80% | 8,000 |
@@ -203,7 +193,7 @@ The project fine-tunes a pretrained `bert-base-uncased` model for three-class se
 
 ### Run Training
 
-From the repository root, execute:
+From the repository root:
 
 ```powershell
 python train.py
@@ -217,7 +207,7 @@ The trained model and tokenizer are saved to:
 models/hate_speech_bert/
 ```
 
-The training script uses the macro F1-score to select the best model checkpoint.
+The training script uses macro F1-score to select the best model checkpoint.
 
 **Note:** Retraining may produce different model weights and evaluation results.
 
@@ -231,7 +221,7 @@ The evaluation script loads the dataset, creates the configured test split, load
 python evaluate.py
 ```
 
-The script writes the following outputs to `results/hate_speech/`:
+The script writes outputs to `results/hate_speech/`:
 
 - `classification_report.txt` — precision, recall, F1-score, and support for each class.
 - `confusion_matrix.png` — visualization of actual versus predicted classes.
@@ -259,9 +249,9 @@ The existing saved classification report contains results from **1,000 test exam
 
 The model performs substantially better on offensive language and neither than on hate speech. The lower F1-score for hate speech indicates that this class is more difficult for the current model to identify reliably.
 
-Consequently, overall accuracy should not be interpreted as equally strong performance across all classes.
+Overall accuracy should therefore not be interpreted as equally strong performance across all classes.
 
-These metrics describe the **existing saved evaluation report**. They are not a guarantee that retraining or rerunning evaluation will reproduce identical results.
+These metrics describe the existing saved evaluation report. They do not guarantee that retraining or rerunning evaluation will reproduce identical results.
 
 ### Understanding the Metrics
 
@@ -272,11 +262,7 @@ These metrics describe the **existing saved evaluation report**. They are not a 
 
 ## Interactive Inference
 
-The inference script loads the saved model and tokenizer from:
-
-```text
-models/hate_speech_bert/
-```
+The inference script loads the saved model and tokenizer from `models/hate_speech_bert/`.
 
 ### Run Inference
 
@@ -297,9 +283,7 @@ Type `exit` to stop the interactive session.
 ### Example Interaction
 
 ```text
-============================================================
 HATE SPEECH CLASSIFIER
-============================================================
 
 Enter a sentence to classify.
 Type 'exit' to stop.
@@ -354,8 +338,15 @@ The included model represents a saved model version. Retraining may produce diff
 
 The dataset is associated with Davidson and collaborators' research on hate speech and offensive language on social media.
 
-Please consult the [original dataset repository](https://github.com/t-davidson/hate-speech-and-offensive-language) and the accompanying research for attribution and usage details.
+Consult the [original dataset repository](https://github.com/t-davidson/hate-speech-and-offensive-language) and accompanying research for attribution and usage details.
 
-## Author
+## Author & Maintainer
 
-Developed as a machine learning and Natural Language Processing project for hate speech and offensive language classification.
+**Chaitanya** — Machine Learning and Natural Language Processing
+
+This project explores transformer-based text classification for hate speech and offensive language detection.
+
+- **GitHub Profile:** [github.com/chaitu4206](https://github.com/chaitu4206)
+- **Project Repository:** [Hate Speech Detection Using BERT](https://github.com/chaitu4206/Hate-Speech-Detection)
+
+Developed as a machine learning and NLP project focused on responsible text classification and content moderation.
